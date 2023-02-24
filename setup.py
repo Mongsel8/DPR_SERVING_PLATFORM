@@ -10,12 +10,12 @@ install_requires = [
     'numpy==1.24.2',
     'transformers==4.26.1',
     'torch==1.12.1+cu113',
-    #'torchvision==0.13.1+cu113',
-    #'torchaudio==0.12.1+cu113',
     'Flask-Migrate==4.0.4',
     'Flask-SQLAlchemy==3.0.3',
     'elasticsearch==8.6.1>=8.6.1',
     'konlpy==0.6.0',
+    'sentencepiece=0.1.97',
+    'omegaconf==2.3.0'
     ]
 
 setup(

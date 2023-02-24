@@ -1,7 +1,6 @@
 import re
 from .similarity import *
 from .index import *
-from pyunpack import Archive
 import subprocess
 import logging
 
