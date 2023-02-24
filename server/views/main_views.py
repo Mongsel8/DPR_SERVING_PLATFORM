@@ -97,6 +97,19 @@ def test(client_ip):
 
     return jsonify(data)
 
+@bp.route('/indexing/<client_ip>', methods = ['GET','POST'])
+def indexing(client_ip):
+
+    success=file_indexing('./data/data2_new_utf.json')
+    if success:
+        return "success"
+    else :
+        return "false"
+@bp.route('/delete/<client_ip>', methods = ['GET','POST'])
+def delete(client_ip):
+    es.indices.delete(index='my_index')
+    return 'index deleted'
+
 
 
 

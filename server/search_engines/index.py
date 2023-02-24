@@ -61,6 +61,10 @@ def file_indexing(path):
             new_dict['content_morphs'] = get_morphs(item['content'])
             new_dict['title_morphs'] = get_morphs(item['title'])
             new_dict['DOCID'] = item['DOCID']
+            if item.get("board"):
+                new_dict['board'] = item['board']
+            if item.get('price'):
+                new_dict['price'] = item['price']
             es.index(index='my_index', body=new_dict,id = new_dict['DOCID'])
             end = time.time()
             count += 1

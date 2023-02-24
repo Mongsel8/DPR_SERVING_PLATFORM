@@ -3,11 +3,13 @@ from transformers import DPRQuestionEncoder
 from torch import Tensor as T
 import torch.nn.functional as F
 from transformers import XLNetTokenizer, BertModel
-
+import torch
+from .data_utils import *
 tokenizer = XLNetTokenizer.from_pretrained('skt/kobert-base-v1')
 model = BertModel.from_pretrained('skt/kobert-base-v1')
+unzip_model_file()
 model.load_state_dict(torch.load('./model_data/dpr_biencoder.13',map_location=torch.device('cpu')),strict=False)
-import torch
+
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model.to(device)
