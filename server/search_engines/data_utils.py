@@ -1,9 +1,9 @@
 import re
 from .similarity import *
+import torch
 from .index import *
 import subprocess
 import logging
-
 # file_path = 'text.txt'
 def read_json(file_path):
     json_objs_list = []
@@ -88,19 +88,5 @@ def search_in_es(q,n):
     sorted_list = sorted(data, key=lambda x: x['score'], reverse=True)
     print(len(sorted_list))
     return sorted_list[:n]
-def unzip_model_file():
-    current_path = os.getcwd()
-    folder_path = current_path+'\\model_data\\'
-    try :
-        unzip_command = '"C:\\Program Files\\7-Zip\\7z.exe" e "' + folder_path + '"'
-        subprocess.run(unzip_command, shell=True, cwd=folder_path)
-    except:
-        logging.log(-1,'"C:\\Program Files\\7-Zip\\7z.exe"이 설치되어있는 지 확인해주세요.')
-
-    li = os.listdir('./model_data/')
-    if 'dpr_biencoder.13' in li:
-        return 'success'
-    else :
-        return 'failed'
 
 
