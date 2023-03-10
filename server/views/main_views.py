@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template, jsonify
 from werkzeug.utils import secure_filename # 업로드 된 파일의 이름이 안전한가를 확인해주는 함수. 해킹 공격에 대해 보안을 하고자 사용되기도 함.
 import os
 import config
+import datetime
 from ..forms import Compare_sentence_sim, Context_file, Compare_SnF
 from server.search_engines.similarity import *
 from server.search_engines.data_utils import *
@@ -15,7 +16,9 @@ simil_result = []
 
 @bp.route('/')
 def base():
-    client_ip = request.remote_addr
+    current_time = datetime.datetime.now()
+    timestamp = current_time.strftime('%Y-%m-%d-%H-%M-%S')
+    client_ip = request.remote_addr + '_' + timestamp
     return render_template('base.html', client_ip=client_ip)
 
 @bp.route('/similarity/<client_ip>', methods=['GET', 'POST'])
